@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Reward } from '../../interfaces/reward';
+import { Reward } from 'src/app/interfaces/reward';
 
 @Component({
-  selector: 'app-adminhome',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-adminrewards',
+  templateUrl: './rewards.component.html',
+  styleUrls: ['./rewards.component.scss']
 })
-export class AdminHomeComponent implements OnInit {
+export class AdminRewardsComponent implements OnInit {
 
   constructor() { }
 
