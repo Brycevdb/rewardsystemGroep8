@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Reward } from '../../interfaces/reward';
 import { User } from 'src/app/interfaces/user';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminhome',
@@ -12,14 +10,13 @@ import { map } from 'rxjs/operators';
 })
 export class AdminHomeComponent implements OnInit {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches)
-    );
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
+  }
+
+  rewardDetail(rewardId){
+    this.router.navigate(['/admin/rewards', rewardId]);
   }
 
   getRewards(){
@@ -27,12 +24,20 @@ export class AdminHomeComponent implements OnInit {
     let r2 : Reward = {id: 2, name: 'Fles cava', description: 'Lekker genieten van een frisse fles cava of wijn met vrienden of alleen??', cost: 25 };
     let r3 : Reward = {id: 3, name: 'Bak fristi', description: 'Waarom sterk gaan als je ook kan fristigaan??', cost: 10 };
     let r4 : Reward = {id: 4, name: 'Bak cece', description: 'Voor de echte straffe manne een goei bak chocomelk, zelfs nog de mogelijkheid om iets warms te voorzien thuis om de straffe wintermaanden door te geraken.', cost: 10 };
+    let r5 : Reward = {id: 1, name: 'Bak bier', description: 'Lekker genieten van een frisse bak bier met vrienden of alleen??', cost: 15 };
+    let r6 : Reward = {id: 2, name: 'Fles cava', description: 'Lekker genieten van een frisse fles cava of wijn met vrienden of alleen??', cost: 25 };
+    let r7 : Reward = {id: 3, name: 'Bak fristi', description: 'Waarom sterk gaan als je ook kan fristigaan??', cost: 10 };
+    let r8 : Reward = {id: 4, name: 'Bak cece', description: 'Voor de echte straffe manne een goei bak chocomelk, zelfs nog de mogelijkheid om iets warms te voorzien thuis om de straffe wintermaanden door te geraken.', cost: 10 };
 
     return [
       r1,
       r2,
       r3,
-      r4
+      r4,
+      r5,
+      r6,
+      r7,
+      r8
     ]
   }
 
