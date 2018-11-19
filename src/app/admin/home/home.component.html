@@ -1,21 +1,20 @@
-<ul class="widthFull gridcontainer">
-  <mat-card *ngFor="let reward of getRewards()" class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-</ul>
+<div class="widthFull column centered">
+  <ul class="gridcontainer paddedExtraSmall">
+    <mat-card *ngFor="let reward of getRewards()" class="example-card margedExtraSmall">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>{{ reward.name }}</mat-card-title>
+        <mat-card-subtitle>Reward</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="/assets/images/rewards/{{ reward.id }}_banner.jpg" alt="Picture of {{ reward.name }}">
+      <mat-card-content>
+        <p class="readable">
+          {{ reward.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a routerLink="/admin/rewards/{{reward.id}}" mat-button>EDIT</a>
+      </mat-card-actions>
+    </mat-card>
+  </ul>
+</div>
