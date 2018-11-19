@@ -9,7 +9,6 @@ export class ChallengesService {
   constructor(private http: HttpClient) { }
 
   getChallenges() {
-
-    return this.http.get('http://localhost:3000/challenges')
+    return this.http.get('http://localhost:3000/challenges');
   }
 }
