@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Reward } from '../../interfaces/reward';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-adminhome',
@@ -24,6 +25,20 @@ export class AdminHomeComponent implements OnInit {
       r2,
       r3,
       r4
+    ]
+  }
+
+  getUsers(){
+    let u1 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u2 : User = { id: 2, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u3 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u4 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+
+    return [
+      u1,
+      u2,
+      u3,
+      u4
     ]
   }
 

@@ -11,3 +11,20 @@ mat-card{
 ul{
     max-width: 1450px;
 }
+
+mat-list-item{
+    height: auto !important;
+}
+
+p.name{
+    font-family: 'montserratsemibold';
+}
+
+p.username,
+p.points{
+    font-size: 14px;
+}
+
+mat-list-item{
+    border-bottom: 1px solid #f2f2f2;
+}
