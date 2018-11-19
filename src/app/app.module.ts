@@ -10,6 +10,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import {MatCardModule} from '@angular/material/card';
+import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -19,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppComponent,
     AdminHomeComponent,
     NavigationComponent,
+    RewardsComponent,
     AdminRewardsComponent
   ],
   imports: [
