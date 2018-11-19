@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Reward } from '../../interfaces/reward';
+import { User } from 'src/app/interfaces/user';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-adminhome',
@@ -8,7 +12,12 @@ import { Reward } from '../../interfaces/reward';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
   }
@@ -24,6 +33,20 @@ export class AdminHomeComponent implements OnInit {
       r2,
       r3,
       r4
+    ]
+  }
+
+  getUsers(){
+    let u1 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u2 : User = { id: 2, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u3 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+    let u4 : User = { id: 1, name: 'Greif Matthias', role: 0, username: 'gatjas', password: '', events: [], chest: [] };
+
+    return [
+      u1,
+      u2,
+      u3,
+      u4
     ]
   }
 

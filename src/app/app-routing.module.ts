@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminHomeComponent } from './admin/home/home.component';
-import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
+import { RewardsComponent } from './rewards/rewards.component';
+import { ChallengesComponent } from './challenges/challenges.component';
 
 const routes: Routes = [
-  {path: 'admin', component: AdminHomeComponent},
-<<<<<<< HEAD
-  {path: 'admin/rewards/4', component: AdminRewardsComponent},
-=======
->>>>>>> fd4d80df69db9f891cb64d7266345e7baeac5280
+  { path: 'admin', component: AdminHomeComponent },
+  { path: 'admin/rewards/:id', component: AdminRewardsComponent },
   {path: 'rewards', component: RewardsComponent},
-  {path: 'admin/rewards', component: AdminRewardsComponent},
-  {path: '', redirectTo: '', pathMatch: 'full'}, // Redirect default
+  {path: 'challenges', component: ChallengesComponent},
+  { path: '', redirectTo: '', pathMatch: 'full' } // Redirect default
 ];
 
 @NgModule({
