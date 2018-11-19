@@ -1,10 +1,31 @@
 <mat-tab-group>
   <mat-tab label="Users">
-    <h1>
-      
-    </h1>
-    <p>...</p>
+    <mat-list>
+        <mat-list-item *ngFor="let user of getUsers()">
+          <li class="row centered paddedNormal noPadding_top noPadding_bottom">
+            <img matListAvatar src="/assets/images/avatars/{{ user.id }}.jpg" alt="Avatar of user {{ user.name }}"
+              class="paddedSmall">
+            
+            <div class="column">
+                <div class="row">
+                  <p class="name">
+                    {{ user.name }}
+                  </p>
+
+                  <p class="points margedExtraSmall noMargin_top noMargin_bottom noMargin_right ">
+                    -- 600 points
+                  </p>
+                </div>
+                
+                <p class="username margedThin noMargin_left noMargin_right noMargin_bottom">
+                  {{ user.username }}
+                </p>
+            </div>
+          </li>
+        </mat-list-item>
+      </mat-list>
   </mat-tab>
+
   <mat-tab label="Rewards">
     <div class="widthFull column centered">
       <ul class="gridcontainer paddedExtraSmall">
@@ -21,7 +42,7 @@
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <a routerLink="/admin/rewards" mat-button>EDIT</a>
+            <a [routerLink]="['/admin/rewards', reward.id]" mat-button>EDIT</a>
           </mat-card-actions>
         </mat-card>
       </ul>
