@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Reward } from '../../interfaces/reward';
 import { User } from 'src/app/interfaces/user';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-adminhome',
@@ -9,7 +12,12 @@ import { User } from 'src/app/interfaces/user';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
   }
