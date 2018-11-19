@@ -10,12 +10,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 import {MatCardModule} from '@angular/material/card';
+import { RewardsComponent } from './rewards/rewards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminHomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    RewardsComponent
   ],
   imports: [
     BrowserModule,
