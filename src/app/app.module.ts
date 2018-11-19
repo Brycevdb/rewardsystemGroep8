@@ -4,13 +4,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+
+import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-
-import {MatCardModule} from '@angular/material/card';
-import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { AdminRewardsComponent } from './admin/rewards/rewards.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
