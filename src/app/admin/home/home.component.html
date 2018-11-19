@@ -41,8 +41,9 @@
               {{ reward.description }}
             </p>
           </mat-card-content>
+          
           <mat-card-actions>
-            <a [routerLink]="['rewards', reward.id]" mat-button>EDIT</a>
+            <a [routerLink]="['/admin/rewards', reward.id]">EDIT</a>
           </mat-card-actions>
         </mat-card>
       </ul>
