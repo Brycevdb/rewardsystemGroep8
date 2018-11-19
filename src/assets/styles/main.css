@@ -1,0 +1,174 @@
+/* GREIF MATTHIAS : DO NOT CHANGE */
+
+h1, h2, h3, h4, h5, h6,
+p{
+    font-family: 'montserratextrabold';
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    font-family: 'montserratregular'
+}
+
+p.title{
+    font-size: 40px;
+    font-family: 'montserratextrabold';
+}
+
+p.readable{
+    line-height: 25px;
+}
+
+h1{
+    text-transform: uppercase;
+    font-size: 26px;
+}
+
+h2{
+    font-size: 28px;
+    font-family: 'montserratbold';
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+ul li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #212121;
+    outline: none;
+}
+
+a{
+    outline: none;
+}
+
+a:focus{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.widthFull{
+    width: 100%;
+}
+
+.widthHalf{
+    width: 50%;
+}
+
+.widthMaxed{
+    width: 100%;
+    max-width: 1100px;
+}
+
+.gridcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.gridcontainer > * {
+    flex-grow: 1;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.row.centered,
+.column.centered{
+    align-items: center;
+}
+
+.paddedThin{
+    padding: 5px;
+}
+
+.paddedExtraSmall{
+    padding: 12px;
+}
+
+.paddedSmall{
+    padding: 18px;
+}
+
+.paddedNormal{
+    padding: 28px;
+}
+
+.paddedBig{
+    padding: 40px;
+}
+
+.paddedExtraBig{
+    padding: 100px;
+}
+
+.noPadding_left{
+    padding-left: 0;
+}
+
+.noPadding_right{
+    padding-right: 0;
+}
+
+.noPadding_top{
+    padding-top: 0;
+}
+
+.noPadding_bottom{
+    padding-bottom: 0;
+}
+
+.margedThin{
+    margin: 5px;
+}
+
+.margedExtraSmall{
+    margin: 12px;
+}
+
+.margedSmall{
+    margin: 18px;
+}
+
+.margedNormal{
+    margin: 28px;
+}
+
+.margedBig{
+    margin: 40px;
+}
+
+.margedExtraBig{
+    margin: 100px;
+}
+
+.noMargin_left{
+    margin-left: 0;
+}
+
+.noMargin_right{
+    margin-right: 0;
+}
+
+.noMargin_top{
+    margin-top: 0;
+}
+
+.noMargin_bottom{
+    margin-bottom: 0;
+}
