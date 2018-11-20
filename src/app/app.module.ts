@@ -13,6 +13,7 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     NavigationComponent,
     RewardsComponent,
     AdminRewardsComponent,
-    ChallengesComponent
+    ChallengesComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

@@ -4,6 +4,7 @@ import { AdminHomeComponent } from './admin/home/home.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import { ChallengesComponent } from './challenges/challenges.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: 'admin', component: AdminHomeComponent},
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'challenges', component: ChallengesComponent},
   {path: 'admin/rewards', component: AdminRewardsComponent},
   { path: 'admin/rewards/:id', component: AdminRewardsComponent },
+  {path: 'login', component: LoginComponent},
   { path: '', redirectTo: '', pathMatch: 'full' }, // Redirect default
 ];
 
