@@ -19,24 +19,5 @@
           </mat-card-actions>
         </div>
         </mat-card>
-
-      <mat-card class="margedExtraSmall">
-          <mat-form-field class="widthFull">
-            <input type="text" #inpName matInput placeholder="Naam" />
-          </mat-form-field>
-          <mat-form-field class="widthFull">
-            <input type="number" #inpCost matInput placeholder="Kost" />
-          </mat-form-field>
-        <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
-        <mat-card-content>
-          <mat-form-field class="widthFull">
-            <textarea #inpDescription matInput placeholder="Beschrijving"></textarea>
-          </mat-form-field>
-        </mat-card-content>
-        
-        <mat-card-actions>
-          <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Voeg een nieuwe reward toe</a>
-        </mat-card-actions>
-      </mat-card>
     </ul>
   </div>
