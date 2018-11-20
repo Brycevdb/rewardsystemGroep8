@@ -1,16 +1,38 @@
 <div class="column centered">
   <mat-card *ngIf="challenge != null" class="margedExtraSmall">
+
       <mat-form-field class="widthFull">
           <input type="text" value="{{challenge.name}}" #inpName matInput placeholder="Naam" />
       </mat-form-field>
+
       <mat-form-field class="widthFull">
           <input type="number" value="{{challenge.basepoints}}" #inpBasepoints matInput placeholder="Kost" />
       </mat-form-field>
+
       <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for challenge"> <!--{{reward._id}}_banner-->
+
       <mat-card-content>
+
       <mat-form-field class="widthFull">
           <textarea #inpDescription matInput placeholder="Beschrijving" value={{challenge.description}}></textarea>
       </mat-form-field>
+
+      <mat-card>
+        <p>
+          NOT WORKING YET
+        </p>
+        <mat-checkbox formControlName="hideRequired">Deze challenge is tijdsgebonden</mat-checkbox>
+        
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          </mat-form-field>
+
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-card-content>
+      </mat-card>
+
       </mat-card-content>
       
       <mat-card-actions>
