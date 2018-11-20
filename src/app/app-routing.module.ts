@@ -7,7 +7,6 @@ import { ChallengesComponent } from './challenges/challenges.component';
 
 const routes: Routes = [
   {path: 'admin', component: AdminHomeComponent},
-  {path: 'admin/rewards/4', component: AdminRewardsComponent},
   {path: 'rewards', component: RewardsComponent},
   {path: 'challenges', component: ChallengesComponent},
   {path: 'admin/rewards', component: AdminRewardsComponent},
