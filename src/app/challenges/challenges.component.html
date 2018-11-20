@@ -12,11 +12,14 @@
             <mat-card *ngFor="let challenge of challenges; index as i" class="example-card">
               <div class="kaart">
               <mat-card-header color="primary">
-                <div mat-card-avatar class="header-image"></div>
-                <mat-card-title>{{challenge.name}}</mat-card-title>
                 
+                <mat-card-title>{{challenge.name}}</mat-card-title>
+                <div mat-card-avatar class="header-image"></div>
+                
+                <div color="accent" class="basepoint" *ngIf="challenge.basepoints=='1'">{{challenge.basepoints}} punt</div>
+                <div class="basepoint" *ngIf="challenge.basepoints!='1'">{{challenge.basepoints}} punten</div>
               </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <img mat-card-image src="../../assets/images/challenges/challenge.PNG" alt="Photo of a Shiba Inu">
               <mat-card-content>
                   <mat-accordion>
                       <mat-expansion-panel>
@@ -32,7 +35,7 @@
                         </p>
 
                         <mat-form-field class="widthFull">
-                          <textarea matInput placeholder="Beschrijving"></textarea>
+                          <textarea matInput placeholder="Extra informatie"></textarea>
                         </mat-form-field>
                       </mat-expansion-panel>
                     </mat-accordion>
