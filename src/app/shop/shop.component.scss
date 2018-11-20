@@ -1,0 +1,30 @@
+mat-card{
+    max-width: 300px;
+}
+
+.header-image{
+    background-image: url("/assets/icons/round_star_rate_black.png");
+    background-size: contain;
+    background-color: #f2f2f2;
+}
+
+ul{
+    max-width: 1450px;
+}
+
+mat-list-item{
+    height: auto !important;
+}
+
+p.name{
+    font-family: 'montserratsemibold';
+}
+
+p.username,
+p.points{
+    font-size: 14px;
+}
+
+mat-list-item{
+    border-bottom: 1px solid #f2f2f2;
+}
