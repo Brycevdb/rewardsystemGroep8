@@ -15,10 +15,12 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatSelectModule } from '@angular/material/select';
 
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -42,15 +44,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatTabsModule,
     MatExpansionModule,
     MatGridListModule,
-    MatFormFieldModule
-    // ,MatSelectModule
+    MatFormFieldModule,
+    // MatSelectModule
 
     
+    MatTabsModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

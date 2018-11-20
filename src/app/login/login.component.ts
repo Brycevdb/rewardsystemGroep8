@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(user);
     this.authService.userData$.subscribe(data => this.logedInUser = data);
     console.log('ingelogde gebruiker:' + this.logedInUser.name);
+    console.log(this.logedInUser);
   }
 
 }

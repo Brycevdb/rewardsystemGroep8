@@ -1,5 +1,5 @@
 export interface Reward {
-    id: number;
+    _id: string;
     name: string;
     description: string;
     cost: number;
