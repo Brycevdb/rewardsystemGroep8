@@ -45,7 +45,7 @@ export class ChallengesService {
 
   get(id: string): Observable<Challenge> {
     return this.http.get<Challenge>(this.challengeUrl + '/' + id).pipe(
-      tap((challenge: Challenge) => this.log('Fetched reward with id ' + id)),
+      tap((challenge: Challenge) => this.log('Fetched challenge with id ' + id)),
       catchError(this.handleError<Challenge>('getChallenge'))
     );
   }
