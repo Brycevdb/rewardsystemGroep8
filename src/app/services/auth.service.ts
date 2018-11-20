@@ -12,7 +12,7 @@ export class AuthService {
   constructor() {}
   login(user) {
     this.logout();
-    this.setUserData(user.user);
+    this.setUserData(user);
 }
   logout() {
     this.userData$.next(null);
@@ -20,7 +20,7 @@ export class AuthService {
   private setUserData(user) {
     if (user !== null) {
       this.userData$.next({
-        id: user._id,
+        id: user.id,
         name: user.name,
         role: user.role,
         username: user.username,

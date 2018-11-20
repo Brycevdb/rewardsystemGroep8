@@ -3,3 +3,6 @@
     {{User.name}}
   </li>
 </ul>
+<button mat-raised-button color="primary" *ngFor="let User of users" (click)="login(User)">
+  {{User.name}}
+</button>
