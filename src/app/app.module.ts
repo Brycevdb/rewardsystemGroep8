@@ -18,10 +18,13 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatSelectModule } from '@angular/material/select';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 import {AuthService} from './services/auth.service';
 import { AdminChallengesComponent } from './admin/challenges/challenges.component';
+import { UsersComponent } from './admin/users/users.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { AdminChallengesComponent } from './admin/challenges/challenges.componen
     AdminRewardsComponent,
     AdminChallengesComponent,
     ChallengesComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
+    ShopComponent
   ],
   imports: [
     HttpClientModule,
@@ -49,7 +54,11 @@ import { AdminChallengesComponent } from './admin/challenges/challenges.componen
     MatExpansionModule,
     MatGridListModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
