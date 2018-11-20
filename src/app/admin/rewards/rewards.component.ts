@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Reward } from 'src/app/interfaces/reward';
 import { ActivatedRoute } from '@angular/router';
+import { RewardsService } from 'src/app/services/rewards.service';
 
 @Component({
   selector: 'app-adminrewards',
@@ -8,14 +9,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./rewards.component.scss']
 })
 export class AdminRewardsComponent implements OnInit, OnDestroy {
-  id: number;
+  reward: Reward;
   private sub: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private rewardsservice: RewardsService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = +params['id'];
+       this.rewardsservice.get(params['id']).subscribe(reward => this.reward = reward);
     });
   }
 

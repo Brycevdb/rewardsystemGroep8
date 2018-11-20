@@ -8,11 +8,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ChallengesComponent } from './challenges/challenges.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from './services/auth.service';
 
@@ -38,7 +41,10 @@ import {AuthService} from './services/auth.service';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatTabsModule
+    MatExpansionModule,
+    MatGridListModule
+    MatTabsModule,
+    MatInputModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

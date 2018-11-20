@@ -40,7 +40,7 @@ export class ChallengesService {
 
     return this.http.get<Challenge[]>(this.challengeUrl)
     .pipe(
-      tap(_ => this.log('fetched challenges')),
+      tap(challenges => (console.log(challenges))),
       catchError(this.handleError('getChallenges', []))
     );
   }
