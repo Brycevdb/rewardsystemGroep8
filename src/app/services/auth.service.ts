@@ -8,7 +8,6 @@ import { User} from '../interfaces/user';
 export class AuthService {
 
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
-
   constructor() {}
   login(user) {
     this.logout();
@@ -20,7 +19,7 @@ export class AuthService {
   private setUserData(user) {
     if (user !== null) {
       this.userData$.next({
-        id: user.id,
+        id: user._id,
         name: user.name,
         role: user.role,
         username: user.username,

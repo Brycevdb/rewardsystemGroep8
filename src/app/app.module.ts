@@ -14,6 +14,7 @@ import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
