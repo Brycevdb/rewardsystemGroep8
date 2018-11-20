@@ -18,17 +18,25 @@
               </mat-card-header>
               <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
               <mat-card-content>
-                  <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          Meer informatie
-                        </mat-panel-title>
-                       
-                      </mat-expansion-panel-header>
-                      <p>{{challenge.description}}</p>
-                      
+                  <mat-accordion>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Meer informatie
+                          </mat-panel-title>
+                          <mat-panel-description></mat-panel-description>
+                        </mat-expansion-panel-header>
                     
-                    </mat-expansion-panel>
+                        <p class="widthFull margedThin noMargin_left noMargin_right">
+                          {{challenge.description}}
+                        </p>
+
+                        <mat-form-field class="widthFull">
+                          <textarea matInput placeholder="Beschrijving"></textarea>
+                        </mat-form-field>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                    
               </mat-card-content>
               <mat-card-actions>
                 <button mat-raised-button color="accent">VERZEND UITDAGING</button>
