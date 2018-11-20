@@ -8,6 +8,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ChallengesComponent } from './challenges/challenges.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
@@ -35,7 +37,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

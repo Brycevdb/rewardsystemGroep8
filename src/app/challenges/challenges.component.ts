@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChallengesService } from '../services/challenges.service';
-import { Observable } from 'rxjs';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { Challenge} from '../interfaces/challenge';
 
 @Component({
