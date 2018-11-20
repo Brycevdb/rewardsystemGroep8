@@ -46,10 +46,6 @@ import {AuthService} from './services/auth.service';
     MatCardModule,
     MatExpansionModule,
     MatGridListModule,
-    MatFormFieldModule,
-    // MatSelectModule
-
-    
     MatTabsModule,
     MatInputModule
   ],

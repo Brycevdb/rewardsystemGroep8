@@ -36,9 +36,4 @@ export class AdminHomeComponent implements OnInit {
 
     this.getData();
   }
-
-  delete(reward: Reward): void {
-    this.rewards = this.rewards.filter(c => c !== reward);
-    this.rewardsservice.delete(reward).subscribe();
-  }
 }

@@ -14,7 +14,8 @@
         </mat-card-content>
         
         <mat-card-actions>
-        <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Sla wijzigingen op</a>
+            <a mat-button (click)="updateReward(inpName.value, inpDescription.value, inpCost.value)">Sla wijzigingen op</a>
+            <a mat-button (click)="deleteReward()">Verwijderen</a>
         </mat-card-actions>
     </mat-card>
 </div>

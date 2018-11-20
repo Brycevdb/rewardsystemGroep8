@@ -22,12 +22,9 @@ export class RewardsService {
     );
   }
 
-  delete (reward: Reward | string): Observable<Reward> {
-    const id = typeof reward === 'string' ? reward : reward._id;
-    const url = `${this.uri}/${id}`;
-
-    return this.http.delete<Reward>(url, httpOptions).pipe(
-      tap(_ => this.log('Deleted reward with id ' + id)),
+  delete (key: string): Observable<Reward> {
+    return this.http.delete<Reward>(this.uri + '/' + key, httpOptions).pipe(
+      tap(_ => this.log('Deleted reward with id ' + key)),
       catchError(this.handleError<Reward>('deleteReward'))
     );
   }
@@ -44,6 +41,13 @@ export class RewardsService {
     return this.http.get<Reward>(this.uri + '/' + id).pipe(
       tap((reward: Reward) => this.log('Fetched reward with id ' + id)),
       catchError(this.handleError<Reward>('addReward'))
+    );
+  }
+
+  update(reward: Reward): Observable<Reward>{
+    return this.http.put<Reward>(this.uri + '/' + reward._id, reward, httpOptions).pipe(
+      tap((reward: Reward) => this.log('Updated reward with id ' + reward._id)),
+      catchError(this.handleError<Reward>('updateReward'))
     );
   }
 
