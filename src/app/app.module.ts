@@ -13,6 +13,7 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Users">
     <mat-list>
-        <mat-list-item *ngFor="let user of getUsers()">
+        <mat-list-item *ngFor="let user of users">
           <li class="row centered paddedNormal noPadding_top noPadding_bottom">
             <img matListAvatar src="/assets/images/avatars/{{ user.id }}.jpg" alt="Avatar of user {{ user.name }}"
               class="paddedSmall">
@@ -29,21 +29,42 @@
   <mat-tab label="Rewards">
     <div class="widthFull column centered">
       <ul class="gridcontainer paddedExtraSmall">
-        <mat-card *ngFor="let reward of getRewards()" class="example-card margedExtraSmall">
-          <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>{{ reward.name }}</mat-card-title>
-            <mat-card-subtitle>Reward</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="/assets/images/rewards/{{ reward.id }}_banner.jpg" alt="Picture of {{ reward.name }}">
+        <mat-card *ngFor="let reward of rewards" class="margedExtraSmall">
+          <div *ngIf="rewards != null && rewards.length > 0">
+            <mat-card-header>
+              <div mat-card-avatar class="header-image"></div>
+              <mat-card-title>{{ reward.name }}</mat-card-title>
+              <mat-card-subtitle>Reward</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Picture of {{ reward.name }}"> <!--{{ reward._id }}_banner-->
+            <mat-card-content>
+              <p class="readable">
+                {{ reward.description }}
+              </p>
+            </mat-card-content>
+            
+            <mat-card-actions>
+              <a [routerLink]="['/admin/rewards', reward._id]" mat-button>EDIT</a>
+            </mat-card-actions>
+          </div>
+          </mat-card>
+
+        <mat-card class="margedExtraSmall">
+            <mat-form-field class="widthFull">
+              <input type="text" #inpName matInput placeholder="Naam" />
+            </mat-form-field>
+            <mat-form-field class="widthFull">
+              <input type="number" #inpCost matInput placeholder="Kost" />
+            </mat-form-field>
+          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
           <mat-card-content>
-            <p class="readable">
-              {{ reward.description }}
-            </p>
+            <mat-form-field class="widthFull">
+              <textarea #inpDescription matInput placeholder="Beschrijving"></textarea>
+            </mat-form-field>
           </mat-card-content>
           
           <mat-card-actions>
-            <a [routerLink]="['/admin/rewards', reward.id]">EDIT</a>
+            <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Voeg een nieuwe reward toe</a>
           </mat-card-actions>
         </mat-card>
       </ul>
