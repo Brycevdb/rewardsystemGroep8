@@ -42,7 +42,7 @@ import {AuthService} from './services/auth.service';
     MatListModule,
     MatCardModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
     MatTabsModule,
     MatInputModule
   ],
