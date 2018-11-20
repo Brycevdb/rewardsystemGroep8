@@ -7,11 +7,13 @@ import { ChallengesComponent } from './challenges/challenges.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './guards/auth.guard';
 import { AdminChallengesComponent } from './admin/challenges/challenges.component';
+import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   {path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard]},
   {path: 'rewards', component: RewardsComponent},
   {path: 'challenges', component: ChallengesComponent},
+  {path: 'shop', component: ShopComponent},
   {path: 'admin/rewards', component: AdminRewardsComponent, canActivate: [AuthGuard]},
   { path: 'admin/rewards/:id', component: AdminRewardsComponent, canActivate: [AuthGuard] },
   {path: 'admin/challenges', component: AdminChallengesComponent, canActivate: [AuthGuard]},
