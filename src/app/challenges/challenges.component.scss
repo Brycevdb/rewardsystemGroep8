@@ -37,7 +37,10 @@ ul{
 }
 
 .gridcontainer {
-    display:flex !important;
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     
 }
 
