@@ -4,6 +4,7 @@ import { User} from '../interfaces/user';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Challenge} from '../interfaces/challenge';
+import { Reward } from '../interfaces/reward';
 
 
 const httpOptions = {
