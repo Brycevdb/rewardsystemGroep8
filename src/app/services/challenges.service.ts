@@ -18,14 +18,14 @@ export class ChallengesService {
   /** POST: add a new hero to the server */
   addChallenge (challenge: Challenge): Observable<Challenge> {
     return this.http.post<Challenge>(this.challengeUrl, challenge, httpOptions).pipe(
-      tap((challenge: Challenge) => this.log(`added challenge w/ id=${challenge.id}`)),
+      tap((challenge: Challenge) => this.log(`added challenge w/ id=${challenge._id}`)),
       catchError(this.handleError<Challenge>('addChallenge'))
     );
   }
 
   /** DELETE: delete the hero from the server */
   deleteChallenge (challenge: Challenge | number): Observable<Challenge> {
-    const id = typeof challenge === 'number' ? challenge : challenge.id;
+    const id = typeof challenge === 'number' ? challenge : challenge._id;
     const url = `${this.challengeUrl}/${id}`;
 
     return this.http.delete<Challenge>(url, httpOptions).pipe(
