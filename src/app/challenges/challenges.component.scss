@@ -1,13 +1,22 @@
 .container {margin:auto;
-            padding:20px;}
+            padding:20px;
+            
+        }
 
 .container > h1 {padding-bottom:20px;}
 
 mat-card{
-    max-width: 350px;
+    max-width: 332px;
+    display:inline-block;
 }
 
-.example-card {margin:30px;}
+mat-card-title {
+    padding-bottom:20px;
+}
+
+.example-card {margin:30px;
+padding:auto;
+display:inline-block;}
 
 .header-image{
     background-image: url("/assets/icons/round_star_rate_black.png");
@@ -22,6 +31,8 @@ ul{
 
 .gridcontainer {
     text-align:center;
+    display:flex !important;
+    
 }
 
 .kaart {display:inline-block;}

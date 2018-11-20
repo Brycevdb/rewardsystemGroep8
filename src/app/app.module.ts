@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatOptionModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,6 +16,9 @@ import { AdminRewardsComponent } from './admin/rewards/rewards.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,11 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatTabsModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule
+    // ,MatSelectModule
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
