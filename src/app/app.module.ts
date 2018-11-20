@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatSelectModule } from '@angular/material/select';
 
 import {AuthService} from './services/auth.service';
+import { AdminChallengesComponent } from './admin/challenges/challenges.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {AuthService} from './services/auth.service';
     NavigationComponent,
     RewardsComponent,
     AdminRewardsComponent,
+    AdminChallengesComponent,
     ChallengesComponent,
     LoginComponent
   ],

@@ -1,7 +1,8 @@
 export interface Challenge {
-    id: number;
+    _id: string;
     name: string;
-    basepoints: Int16Array;
+    description: string;
+    basepoints: number;
     activeStart: Date;
     activeEnd: Date;
     loccoords: {

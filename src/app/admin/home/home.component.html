@@ -1,9 +1,9 @@
 <mat-tab-group>
-  <mat-tab label="Users">
+  <mat-tab label="Gebruikers">
     <mat-list>
         <mat-list-item *ngFor="let user of users">
           <li class="row centered paddedNormal noPadding_top noPadding_bottom">
-            <img matListAvatar src="/assets/images/avatars/{{ user.id }}.jpg" alt="Avatar of user {{ user.name }}"
+            <img matListAvatar src="/assets/images/avatars/placeholder.jpg" alt="Avatar of user {{ user.name }}"
               class="paddedSmall">
             
             <div class="column">
@@ -65,6 +65,51 @@
           
           <mat-card-actions>
             <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Voeg een nieuwe reward toe</a>
+          </mat-card-actions>
+        </mat-card>
+      </ul>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Challenges">
+    <div class="widthFull column centered">
+      <ul class="gridcontainer paddedExtraSmall">
+        <mat-card *ngFor="let challenge of challenges" class="margedExtraSmall">
+          <div *ngIf="challenge != null && challenges.length > 0">
+            <mat-card-header>
+              <div mat-card-avatar class="header-image"></div>
+              <mat-card-title>{{ challenge.name }}</mat-card-title>
+              <mat-card-subtitle>Challenge</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Picture of {{ challenge.name }}"> <!--{{ reward._id }}_banner-->
+            <mat-card-content>
+              <p class="readable">
+                {{ challenge.description }}
+              </p>
+            </mat-card-content>
+            
+            <mat-card-actions>
+              <a [routerLink]="['/admin/challenges', challenge._id]" mat-button>EDIT</a>
+            </mat-card-actions>
+          </div>
+          </mat-card>
+
+        <mat-card class="margedExtraSmall">
+            <mat-form-field class="widthFull">
+              <input type="text" #inpChallengeName matInput placeholder="Naam" />
+            </mat-form-field>
+            <mat-form-field class="widthFull">
+              <input type="number" #inpChallengeBasepoints matInput placeholder="Basispunten" />
+            </mat-form-field>
+          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
+          <mat-card-content>
+            <mat-form-field class="widthFull">
+              <textarea #inpChallengeDescription matInput placeholder="Beschrijving"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+          
+          <mat-card-actions>
+            <a mat-button (click)="addChallenge(inpChallengeName.value, inpChallengeDescription.value, inpChallengeBasepoints.value)">Voeg een nieuwe challenge toe</a>
           </mat-card-actions>
         </mat-card>
       </ul>

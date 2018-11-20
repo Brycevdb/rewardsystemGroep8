@@ -23,6 +23,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Reward System</span>
+      <span *ngIf="user != null">-- {{user.name}}</span>
     </mat-toolbar>
     
     <router-outlet></router-outlet>

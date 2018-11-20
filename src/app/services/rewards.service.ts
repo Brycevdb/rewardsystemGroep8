@@ -40,7 +40,7 @@ export class RewardsService {
   get(id: string): Observable<Reward> {
     return this.http.get<Reward>(this.uri + '/' + id).pipe(
       tap((reward: Reward) => this.log('Fetched reward with id ' + id)),
-      catchError(this.handleError<Reward>('addReward'))
+      catchError(this.handleError<Reward>('getReward'))
     );
   }
 

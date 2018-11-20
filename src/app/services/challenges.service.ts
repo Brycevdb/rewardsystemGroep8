@@ -15,8 +15,6 @@ export class ChallengesService {
   private challengeUrl = 'http://localhost:3000/challenges';
   constructor(private http: HttpClient) { }
 
-  //////// Save methods //////////
-
   /** POST: add a new hero to the server */
   addChallenge (challenge: Challenge): Observable<Challenge> {
     return this.http.post<Challenge>(this.challengeUrl, challenge, httpOptions).pipe(
@@ -40,8 +38,29 @@ export class ChallengesService {
 
     return this.http.get<Challenge[]>(this.challengeUrl)
     .pipe(
-      tap(challenges => (console.log(challenges))),
+      tap(),
       catchError(this.handleError('getChallenges', []))
+    );
+  }
+
+  get(id: string): Observable<Challenge> {
+    return this.http.get<Challenge>(this.challengeUrl + '/' + id).pipe(
+      tap((challenge: Challenge) => this.log('Fetched reward with id ' + id)),
+      catchError(this.handleError<Challenge>('getChallenge'))
+    );
+  }
+
+  update(challenge: Challenge): Observable<Challenge>{
+    return this.http.put<Challenge>(this.challengeUrl + '/' + challenge._id, challenge, httpOptions).pipe(
+      tap((challenge: Challenge) => this.log('Updated challenge with id ' + challenge._id)),
+      catchError(this.handleError<Challenge>('updateChallenge'))
+    );
+  }
+
+  delete (key: string): Observable<Challenge> {
+    return this.http.delete<Challenge>(this.challengeUrl + '/' + key, httpOptions).pipe(
+      tap(_ => this.log('Deleted challenge with id ' + key)),
+      catchError(this.handleError<Challenge>('deleteChallenge'))
     );
   }
 
