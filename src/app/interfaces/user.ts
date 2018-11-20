@@ -1,8 +1,8 @@
-import { Chest } from "./chest";
-import { Event } from "./event";
+import { Chest } from './chest';
+import { Event } from './event';
 
 export interface User {
-    id : number;
+    id: number;
     name: string;
     role: number;
     username: string;
