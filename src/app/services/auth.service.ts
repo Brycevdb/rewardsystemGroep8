@@ -12,13 +12,13 @@ const httpOptions = {
 })
 export class AuthService {
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
-  readonly URL = "http://localhost:4000/users/login";
+  readonly URL = 'http://localhost:4000/users/login';
   
   constructor(private http: HttpClient) {}
   
   login(user) {
     this.logout();
-    this.http.post<any>("http://localhost:4000/users/login", user, httpOptions)
+    this.http.post<any>('http://localhost:4000/users/login', user, httpOptions)
     .pipe(map(login => {
       console.log(login);
       if (login && login.token) {

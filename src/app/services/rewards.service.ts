@@ -37,6 +37,14 @@ export class RewardsService {
     );
   }
 
+  getAll(): Observable<Reward[]> {
+
+    return this.http.get<Reward[]>(this.rewardUrl).pipe(
+      tap(_ => this.log('Fetched all rewards')),
+      catchError(this.handleError('getAllRewards', []))
+    );
+  }
+
   get(id: string): Observable<Reward> {
     return this.http.get<Reward>(this.rewardUrl + '/' + id).pipe(
       tap((reward: Reward) => this.log('Fetched reward with id ' + id)),
