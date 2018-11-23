@@ -1,23 +1,41 @@
 <div class="widthFull column centered">
-    <ul class="gridcontainer paddedExtraSmall">
-      <mat-card *ngFor="let reward of rewards" class="margedExtraSmall">
-        <div *ngIf="rewards != null && rewards.length > 0">
-          <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>{{ reward.name }}</mat-card-title>
-            <mat-card-subtitle>Reward</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Picture of {{ reward.name }}"> <!--{{ reward._id }}_banner-->
-          <mat-card-content>
-            <p class="readable">
-              {{ reward.description }}
-            </p>
-          </mat-card-content>
-          
-          <mat-card-actions>
-            <a [routerLink]="['/admin/rewards', reward._id]" mat-button>EDIT</a>
-          </mat-card-actions>
-        </div>
-        </mat-card>
-    </ul>
+  <div class="widthFull">
+    <p *ngIf="user != null; else elseBlock" class="paddedNormal noPadding_bottom">
+      Uw huidig saldo is: {{ getUserPoints() }}
+    </p>
   </div>
+
+  <ng-template #elseBlock>
+    <div class="paddedNormal noPadding_bottom">
+      <a mat-button routerLink="/login">
+        Please friend, login.
+      </a>
+    </div>
+  </ng-template>
+
+  <ul class="gridcontainer paddedExtraSmall">
+    <mat-card *ngFor="let reward of rewards" class="margedExtraSmall">
+      <div *ngIf="rewards != null && rewards.length > 0">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>{{ reward.name }}</mat-card-title>
+          <mat-card-subtitle>Reward</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Picture of {{ reward.name }}"> <!--{{ reward._id }}_banner-->
+        <mat-card-content>
+          <p class="readable">
+            {{ reward.description }}
+          </p>
+
+          <p>
+            {{ reward.cost }}
+          </p>
+        </mat-card-content>
+        
+        <mat-card-actions *ngIf="user != null && getUserPoints() >= reward.cost">
+          <a (click)="addReward(reward)" mat-button>Claim</a>
+        </mat-card-actions>
+      </div>
+      </mat-card>
+  </ul>
+</div>

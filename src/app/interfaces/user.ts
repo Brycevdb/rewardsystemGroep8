@@ -2,7 +2,7 @@ import { Chest } from './chest';
 import { Event } from './event';
 
 export interface User {
-    id: String;
+    _id: string;
     name: string;
     role: number;
     username: string;

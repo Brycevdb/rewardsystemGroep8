@@ -36,13 +36,13 @@ export class AuthService {
   private setUserData(user) {
     if (user !== null) {
       this.userData$.next({
-        id: user._id,
+        _id: user._id,
         name: user.name,
         role: user.role,
         username: user.username,
         password: '',
-        chest: null,
-        events: null,
+        chest: [],
+        events: [],
       });
     } else {
       this.userData$.next(null);
