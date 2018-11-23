@@ -3,8 +3,8 @@ export interface Challenge {
     name: string;
     description: string;
     basepoints: number;
-    activeStart: Date;
-    activeEnd: Date;
+    activeStart: number;
+    activeEnd: number;
     loccoords: {
         lon: number,
         lat: number

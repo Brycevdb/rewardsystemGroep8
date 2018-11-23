@@ -34,13 +34,12 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
   private setUserData(user) {
+    console.log(user);
     if (user !== null) {
 
       if(user.chest == null){
         user.chest = [];
       }
-
-      console.log(user.events);
 
       if(user.events == null){
         user.events = [];
