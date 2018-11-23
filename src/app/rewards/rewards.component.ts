@@ -10,6 +10,7 @@ import { Reward } from 'src/app/interfaces/reward';
   styleUrls: ['./rewards.component.scss']
 })
 export class RewardsComponent implements OnInit {
+
   private user: User;
   rewards: Reward[];
 
@@ -27,6 +28,11 @@ export class RewardsComponent implements OnInit {
   getRewards(): void {
     this.rewardsService.getRewards()
     .subscribe(rewards => this.rewards = rewards);
+    this.getRewardsByUserId();
+  }
+
+  getRewardsByUserId(): void {
+    return null;
   }
 
 }
