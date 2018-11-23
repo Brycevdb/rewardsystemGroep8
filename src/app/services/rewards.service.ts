@@ -12,40 +12,40 @@ const httpOptions = {
 })
 export class RewardsService {
 
-  private uri = 'http://localhost:3000/rewards';
+  private rewardUrl = 'http://localhost:3000/rewards';
   constructor(private http: HttpClient) { }
 
   add (reward: Reward): Observable<Reward> {
-    return this.http.post<Reward>(this.uri, reward, httpOptions).pipe(
+    return this.http.post<Reward>(this.rewardUrl, reward, httpOptions).pipe(
       tap((reward: Reward) => this.log('Added reward with id ' + reward._id)),
       catchError(this.handleError<Reward>('addReward'))
     );
   }
 
   delete (key: string): Observable<Reward> {
-    return this.http.delete<Reward>(this.uri + '/' + key, httpOptions).pipe(
+    return this.http.delete<Reward>(this.rewardUrl + '/' + key, httpOptions).pipe(
       tap(_ => this.log('Deleted reward with id ' + key)),
       catchError(this.handleError<Reward>('deleteReward'))
     );
   }
 
-  getAll(): Observable<Reward[]> {
+  getRewards(): Observable<Reward[]> {
 
-    return this.http.get<Reward[]>(this.uri).pipe(
+    return this.http.get<Reward[]>(this.rewardUrl).pipe(
       tap(_ => this.log('Fetched all rewards')),
       catchError(this.handleError('getAllRewards', []))
     );
   }
 
   get(id: string): Observable<Reward> {
-    return this.http.get<Reward>(this.uri + '/' + id).pipe(
+    return this.http.get<Reward>(this.rewardUrl + '/' + id).pipe(
       tap((reward: Reward) => this.log('Fetched reward with id ' + id)),
       catchError(this.handleError<Reward>('getReward'))
     );
   }
 
   update(reward: Reward): Observable<Reward>{
-    return this.http.put<Reward>(this.uri + '/' + reward._id, reward, httpOptions).pipe(
+    return this.http.put<Reward>(this.rewardUrl + '/' + reward._id, reward, httpOptions).pipe(
       tap((reward: Reward) => this.log('Updated reward with id ' + reward._id)),
       catchError(this.handleError<Reward>('updateReward'))
     );
