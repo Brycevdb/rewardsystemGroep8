@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../services/user.service';
+import {UsersService} from '../services/users.service';
 import {User} from '../interfaces/user';
 import {AuthService} from '../services/auth.service';
 import { ChallengesService } from '../services/challenges.service';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     
   ];
   logedInUser: User;
-  constructor(private userService: UserService, public authService: AuthService) { }
+  constructor(private userService: UsersService, public authService: AuthService) { }
   ngOnInit() {
     this.getUsers();
   }
