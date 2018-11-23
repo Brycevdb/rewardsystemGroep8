@@ -10,14 +10,13 @@ import { ChallengesService } from '../services/challenges.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  users: User[] = [
-    {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
-    {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
+  users = [
+    {username: "Laurenz", password: "gatjas"},
+    {username: "daan", password: "gatjas"},
   ];
   logedInUser: User;
   constructor(private userService: UsersService, public authService: AuthService) { }
   ngOnInit() {
-    this.getUsers();
   }
   getUsers(): void {
     //this.userService.getUsers().subscribe(users => this.users = users);
