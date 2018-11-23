@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -25,6 +25,7 @@ import {AuthService} from './services/auth.service';
 import { AdminChallengesComponent } from './admin/challenges/challenges.component';
 import { UsersComponent } from './admin/users/users.component';
 import { ShopComponent } from './shop/shop.component';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ShopComponent } from './shop/shop.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

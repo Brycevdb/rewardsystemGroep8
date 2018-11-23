@@ -5,8 +5,8 @@ import { Observable, of }from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY1NGYyZjViMWRhYzE2NDhkZTI5YTkiLCJpYXQiOjE1NDI4MDMyNjJ9.zdgz0EHtPLhqrw0gya08hUmB5ekhS1Sw0C-R7jL4ntw'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'
+  })
 };
 @Injectable({
   providedIn: 'root'
