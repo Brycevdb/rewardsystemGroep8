@@ -20,7 +20,7 @@ export class ShopComponent implements OnInit {
   challenges: Challenge[];
 
   private getData(){
-    this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
+    this.rewardsservice.getRewards().subscribe(rewards => this.rewards = rewards);
     this.usersservice.getAll().subscribe(users => this.users = users);
     this.challengesservice.getChallenges().subscribe(challenges => this.challenges = challenges);
   }
