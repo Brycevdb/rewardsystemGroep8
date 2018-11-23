@@ -12,7 +12,7 @@ import { ChallengesService } from '../services/challenges.service';
 export class LoginComponent implements OnInit {
   users: User[] = [
     {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
-    
+    {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
   ];
   logedInUser: User;
   constructor(private userService: UsersService, public authService: AuthService) { }

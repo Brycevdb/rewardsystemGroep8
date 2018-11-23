@@ -5,14 +5,17 @@ import { Observable, of }from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY1NGYyZjViMWRhYzE2NDhkZTI5YTkiLCJpYXQiOjE1NDI4MDMyNjJ9.zdgz0EHtPLhqrw0gya08hUmB5ekhS1Sw0C-R7jL4ntw'
+  }
+  )
 };
 @Injectable({
   providedIn: 'root'
 })
 export class ChallengesService {
 
-  private challengeUrl = 'http://localhost:3000/challenges';
+  private challengeUrl = 'http://localhost:4000/challenges/';
   constructor(private http: HttpClient) { }
 
   /** POST: add a new hero to the server */
@@ -36,7 +39,7 @@ export class ChallengesService {
 
   getChallenges(): Observable<Challenge[]> {
 
-    return this.http.get<Challenge[]>(this.challengeUrl)
+    return this.http.get<Challenge[]>(this.challengeUrl, httpOptions)
     .pipe(
       tap(),
       catchError(this.handleError('getChallenges', []))

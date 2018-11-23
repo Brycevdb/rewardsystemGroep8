@@ -5,14 +5,15 @@ import { Observable, of }from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY1NGYyZjViMWRhYzE2NDhkZTI5YTkiLCJpYXQiOjE1NDI4MDMyNjJ9.zdgz0EHtPLhqrw0gya08hUmB5ekhS1Sw0C-R7jL4ntw'})
 };
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  private uri = 'http://localhost:3000/users';
+  private uri = 'http://localhost:4000/users/';
   constructor(private http: HttpClient) { }
 
   add (user: User): Observable<User> {
@@ -41,7 +42,7 @@ export class UsersService {
 
   getAll(): Observable<User[]> {
 
-    return this.http.get<User[]>(this.uri).pipe(
+    return this.http.get<User[]>(this.uri, httpOptions).pipe(
       tap(_ => this.log('Fetched all users')),
       catchError(this.handleError('getAllUsers', []))
     );
