@@ -24,7 +24,7 @@ export class AuthService {
       if (login && login.token) {
         localStorage.setItem('currentUser', JSON.stringify(login));
       }
-      this.setUserData(user);
+      this.setUserData(login);
     })
     ).subscribe();
 
@@ -39,6 +39,8 @@ export class AuthService {
       if(user.chest == null){
         user.chest = [];
       }
+
+      console.log(user.events);
 
       if(user.events == null){
         user.events = [];
