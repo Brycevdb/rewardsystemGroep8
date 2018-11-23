@@ -15,7 +15,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(private rewardsservice: RewardsService, public authService: AuthService, private challengesservice: ChallengesService) {
+  constructor(private rewardsservice: RewardsService, public authService: AuthService, private Usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
 
@@ -33,16 +33,24 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = { _id: '', name: '', username: '', role:0, password: '', chest: [], events: []}
+    
     this.getData();
   }
 
   getUserPoints(): number{
-    var points: number = 0;
+    var points: number = 200;
 
+    // Get obtained
     this.user.events.forEach(event => {
       if(event.revisor != null){
         points += event.points;
       }
+    });
+
+    // Process used
+    this.user.chest.forEach(chest => {
+      points -= chest.cost;
     });
 
     return points;
@@ -53,6 +61,8 @@ export class ShopComponent implements OnInit {
 
     this.user.chest.push({stamp: new Date(), reward, cost: reward.cost});
 
-    
+    // Update db
+    this.Usersservice.update(this.user).subscribe(reward => { 
+    });
   }
 }
