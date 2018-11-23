@@ -9,6 +9,7 @@
       <a routerLink="challenges" mat-list-item >Challenges</a>
       <a routerLink="rewards" mat-list-item >My rewards</a>
       <a routerLink="admin" mat-list-item >admin</a>
+      <a routerLink="shop" mat-list-item >Shop</a>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -22,8 +23,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Reward System</span>
-      <span *ngIf="user != null"> -- {{user.name}}</span>
+      
+      <span *ngIf="user != null; else elseBlock"> Hallo daar {{user.name}}</span>
+      <ng-template #elseBlock>
+          <span>Reward System</span>
+        </ng-template>
     </mat-toolbar>
     
     <router-outlet></router-outlet>

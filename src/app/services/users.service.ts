@@ -17,18 +17,25 @@ export class UsersService {
 
   add (user: User): Observable<User> {
     return this.http.post<User>(this.uri, user, httpOptions).pipe(
-      tap((user: User) => this.log('Added user with id ' + user.id)),
+      tap((user: User) => this.log('Added user with id ' + user._id)),
       catchError(this.handleError<User>('addUser'))
     );
   }
 
   delete (user: User | number): Observable<User> {
-    const id = typeof user === 'number' ? user : user.id;
+    const id = typeof user === 'number' ? user : user._id;
     const url = `${this.uri}/${id}`;
 
     return this.http.delete<User>(url, httpOptions).pipe(
       tap(_ => this.log('Deleted user with id ' + id)),
       catchError(this.handleError<User>('deleteUser'))
+    );
+  }
+
+  update(user: User): Observable<User>{
+    return this.http.put<User>(this.uri + '/' + user._id, user, httpOptions).pipe(
+      tap((user: User) => this.log('Updated user with id ' + user._id)),
+      catchError(this.handleError<User>('updateReward'))
     );
   }
 
