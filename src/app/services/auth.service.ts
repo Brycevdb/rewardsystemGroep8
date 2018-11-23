@@ -35,14 +35,23 @@ export class AuthService {
   }
   private setUserData(user) {
     if (user !== null) {
+
+      if(user.chest == null){
+        user.chest = [];
+      }
+
+      if(user.events == null){
+        user.events = [];
+      }
+
       this.userData$.next({
         _id: user._id,
         name: user.name,
         role: user.role,
         username: user.username,
         password: '',
-        chest: [],
-        events: [],
+        chest: user.chest,
+        events: user.events
       });
     } else {
       this.userData$.next(null);
