@@ -1,21 +1,52 @@
-<ul class="widthFull gridcontainer">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>{{user.name}}</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-</ul>
+<div class="container">
+  <h1>My Rewards</h1>
+
+  <p>...
+
+  </p>
+  <div class="wrapper">
+    <div  class="widthFull gridcontainer">
+
+      <mat-card *ngFor="let reward of chest; index as i" class="example-card">
+        <div class="kaart">
+          <mat-card-header color="primary">
+
+            <mat-card-title>{{}}</mat-card-title>
+            <div mat-card-avatar class="header-image"></div>
+
+            <div color="accent" class="basepoint" *ngIf="challenge.basepoints=='1'">{{challenge.basepoints}} punt</div>
+            <div class="basepoint" *ngIf="challenge.basepoints!='1'">{{challenge.basepoints}} punten</div>
+          </mat-card-header>
+          <img mat-card-image src="../../assets/images/challenges/challenge.PNG" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Meer informatie
+                  </mat-panel-title>
+                  <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <p class="widthFull margedThin noMargin_left noMargin_right">
+                  {{challenge.description}}
+                </p>
+
+                <mat-form-field class="widthFull">
+                  <textarea matInput placeholder="Extra informatie"></textarea>
+                </mat-form-field>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent">VERZEND UITDAGING</button>
+
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+

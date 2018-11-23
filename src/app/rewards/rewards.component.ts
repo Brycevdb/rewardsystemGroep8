@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RewardsService } from 'src/app/services/rewards.service';
 import { User } from 'src/app/interfaces/user';
 import { Reward } from 'src/app/interfaces/reward';
+import {Chest} from '../interfaces/chest';
 
 @Component({
   selector: 'app-rewards',
@@ -11,28 +12,18 @@ import { Reward } from 'src/app/interfaces/reward';
 })
 export class RewardsComponent implements OnInit {
 
+  chest: Chest[];
   private user: User;
   rewards: Reward[];
 
-  constructor( public authService: AuthService, private rewardsService: RewardsService) {
+  constructor( public authService: AuthService, private rewardsService: RewardsService,) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
+      this.chest = this.user.chest;
       console.log(data);
     });
   }
 
-  ngOnInit() {
-    this.getRewards();
-  }
-
-  getRewards(): void {
-    this.rewardsService.getRewards()
-    .subscribe(rewards => this.rewards = rewards);
-    this.getRewardsByUserId();
-  }
-
-  getRewardsByUserId(): void {
-    return null;
-  }
+  ngOnInit() {}
 
 }
