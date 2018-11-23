@@ -20,6 +20,7 @@ export class RewardsComponent implements OnInit {
     this.authService.userData$.subscribe(data => {
       this.user = data;
       this.chest = this.user.chest;
+      
       console.log(data);
     });
   }
