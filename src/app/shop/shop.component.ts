@@ -29,7 +29,8 @@ export class ShopComponent implements OnInit {
   user: User;
 
   private getData(){
-    this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
+    this.rewardsservice.getRewards().subscribe(rewards => this.rewards = rewards);
+    this.challengesservice.getChallenges().subscribe(challenges => this.challenges = challenges);
   }
 
   ngOnInit() {

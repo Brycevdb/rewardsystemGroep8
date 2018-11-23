@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { RewardsService } from 'src/app/services/rewards.service';
 import { User } from 'src/app/interfaces/user';
-import {Reward} from '../interfaces/reward';
+import { Reward } from 'src/app/interfaces/reward';
 
 @Component({
   selector: 'app-rewards',
@@ -14,7 +14,7 @@ export class RewardsComponent implements OnInit {
   private user: User;
   rewards: Reward[];
 
-  constructor( public authService: AuthService, private rewardsservice: RewardsService) {
+  constructor( public authService: AuthService, private rewardsService: RewardsService) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
       console.log(data);
@@ -22,6 +22,12 @@ export class RewardsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRewards();
+  }
+
+  getRewards(): void {
+    this.rewardsService.getRewards()
+    .subscribe(rewards => this.rewards = rewards);
     this.getRewardsByUserId();
   }
 
