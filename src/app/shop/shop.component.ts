@@ -15,13 +15,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(private rewardsservice: RewardsService, public authService: AuthService, private Usersservice: UsersService) {
+  constructor(private rewardsservice: RewardsService, private authService: AuthService, private Usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
-
-      let event: Event = {id: 0, name: 'eventdinges', description: 'bschrijving', revisor: this.user, points: 200, stamp: new Date(), challenge: null};
-
-      this.user.events.push(event);
     });
   }
 
@@ -29,17 +25,17 @@ export class ShopComponent implements OnInit {
   user: User;
 
   private getData(){
-    this.rewardsservice.getRewards().subscribe(rewards => this.rewards = rewards);
+    this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
   }
 
   ngOnInit() {
-    this.user = { _id: '', name: '', username: '', role:0, password: '', chest: [], events: []}
-    
+    //this.user = { _id: '', name: '', username: '', role:0, password: '', chest: [], events: []}
+
     this.getData();
   }
 
   getUserPoints(): number{
-    var points: number = 200;
+    var points: number = 0;
 
     // Get obtained
     this.user.events.forEach(event => {
@@ -50,16 +46,14 @@ export class ShopComponent implements OnInit {
 
     // Process used
     this.user.chest.forEach(chest => {
-      points -= chest.cost;
+      points -= chest.reward.cost;
     });
 
     return points;
   }
 
   addReward(reward: Reward){
-    console.log(reward);
-
-    this.user.chest.push({stamp: new Date(), reward, cost: reward.cost});
+    this.user.chest.push({ stamp: new Date().getTime(), reward });
 
     // Update db
     this.Usersservice.update(this.user).subscribe(reward => { 

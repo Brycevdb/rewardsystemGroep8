@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ChallengesService } from '../services/challenges.service';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { Challenge} from '../interfaces/challenge';
+import { Event } from '../interfaces/event';
+import { User } from '../interfaces/user';
+import { AuthService } from '../services/auth.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-challenges',
@@ -11,36 +14,27 @@ import { Challenge} from '../interfaces/challenge';
 export class ChallengesComponent implements OnInit {
   challenges: Challenge[];
 
-  constructor(private challengesService: ChallengesService) { }
+  user: User;
+
+  constructor(private challengesService: ChallengesService, private authService: AuthService, private Usersservice: UsersService) {
+    this.authService.userData$.subscribe(data => {
+      this.user = data;
+
+      console.log(this.user.events);
+    });
+  }
 
   ngOnInit() {
-    this.getChallenges();
+    this.challengesService.getChallenges().subscribe(challenges => this.challenges = challenges);
   }
 
-  getChallenges(): void {
-    this.challengesService.getChallenges()
-    .subscribe(challenges => this.challenges = challenges);
-  }
+  sendChallenge(challenge: Challenge, description: string){
+    let event: Event = { description: description.trim(), revisor: null, points: 0, stamp: new Date().getTime(), challenge: challenge._id }
+    this.user.events.push(event);
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.challengesService.addChallenge({ name } as Challenge)
-      .subscribe(challenge => {
-        this.challenges.push(challenge);
-      });
+    // Update db
+    this.Usersservice.update(this.user).subscribe(event => {
+      console.log(this.user);
+    });
   }
-
-  delete(challenge: Challenge): void {
-    this.challenges = this.challenges.filter(c => c !== challenge);
-    this.challengesService.deleteChallenge(challenge).subscribe();
-  }
-
 }
-
-
-/*
-Copyright 2017-2018 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

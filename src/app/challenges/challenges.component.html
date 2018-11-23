@@ -1,54 +1,49 @@
 <div class="container">
 <h1>Challenges</h1>
 
-  <p> In de vakjes onderaan kan je de verschillende uitdagingen zien die je kan volbrengen. Heb je één van deze uitdagingen volbracht, 
+  <p class="readable"> In de vakjes onderaan kan je de verschillende uitdagingen zien die je kan volbrengen. Heb je één van deze uitdagingen volbracht, 
     druk dan op 'verzend uitdaging'. Als je niet zeker bent wat juist bedoeld wordt met een uitdaging, druk dan op 'meer informatie' om de 
     beschrijving van de uitdaging te lezen.
-    
   </p>
-  <div class="wrapper">
-      <div  class="widthFull gridcontainer">
 
-            <mat-card *ngFor="let challenge of challenges; index as i" class="example-card">
-              <div class="kaart">
-              <mat-card-header color="primary">
-                
-                <mat-card-title>{{challenge.name}}</mat-card-title>
-                <div mat-card-avatar class="header-image"></div>
-                
-                <div color="accent" class="basepoint" *ngIf="challenge.basepoints=='1'">{{challenge.basepoints}} punt</div>
-                <div class="basepoint" *ngIf="challenge.basepoints!='1'">{{challenge.basepoints}} punten</div>
-              </mat-card-header>
-              <img mat-card-image src="../../assets/images/challenges/challenge.PNG" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                  <mat-accordion>
-                      <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                          <mat-panel-title>
-                            Meer informatie
-                          </mat-panel-title>
-                          <mat-panel-description></mat-panel-description>
-                        </mat-expansion-panel-header>
-                    
-                        <p class="widthFull margedThin noMargin_left noMargin_right">
-                          {{challenge.description}}
-                        </p>
+  <div class="widthFull column centered">
+    <ul class="gridcontainer paddedExtraSmall">
+      <mat-card *ngFor="let challenge of challenges" class="margedExtraSmall">
+        <div *ngIf="challenges != null && challenges.length > 0">
+          <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>{{ challenge.name }}</mat-card-title>
+            <mat-card-subtitle>Challenge</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Picture of {{ challenge.name }}"> <!--{{ reward._id }}_banner-->
+          <mat-card-content>
+            <p class="readable margedSmall noMargin_left noMargin_right noMargin_top">
+              {{ challenge.description }}
+            </p>
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Deed u deze challenge?
+                  </mat-panel-title>
+                  <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <p class="widthFull margedThin noMargin_left noMargin_right">
+                  Geef wat extra informatie en laat het ons weten
+                </p>
+                <mat-form-field class="widthFull">
+                  <textarea #inptaDescription matInput placeholder="Extra informatie"></textarea>
+                </mat-form-field>
 
-                        <mat-form-field class="widthFull">
-                          <textarea matInput placeholder="Extra informatie"></textarea>
-                        </mat-form-field>
-                      </mat-expansion-panel>
-                    </mat-accordion>
-                    
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-raised-button color="accent">VERZEND UITDAGING</button>
-                
-              </mat-card-actions>
-            </div>
-            </mat-card>
-          </div>
+                <a mat-button (click)="sendChallenge(challenge, inptaDescription.value)">Verzend</a>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
         </div>
+      </mat-card>
+    </ul>
+  </div>
 </div>
   
 

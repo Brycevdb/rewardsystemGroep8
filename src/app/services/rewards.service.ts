@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class RewardsService {
 
-  private rewardUrl = 'http://localhost:3000/rewards';
+  private rewardUrl = 'http://localhost:4000/rewards';
   constructor(private http: HttpClient) { }
 
   add (reward: Reward): Observable<Reward> {
@@ -27,14 +27,6 @@ export class RewardsService {
     return this.http.delete<Reward>(this.rewardUrl + '/' + key, httpOptions).pipe(
       tap(_ => this.log('Deleted reward with id ' + key)),
       catchError(this.handleError<Reward>('deleteReward'))
-    );
-  }
-
-  getRewards(): Observable<Reward[]> {
-
-    return this.http.get<Reward[]>(this.rewardUrl).pipe(
-      tap(_ => this.log('Fetched all rewards')),
-      catchError(this.handleError('getAllRewards', []))
     );
   }
 

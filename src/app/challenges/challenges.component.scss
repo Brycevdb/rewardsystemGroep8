@@ -6,9 +6,9 @@
 .container > h1 {padding-bottom:20px;}
 
 mat-card{
-    max-width: 332px;
-    display:inline-block;
+    max-width: 300px;
 }
+
 mat-card-actions {
     text-align:center;
 }
@@ -16,10 +16,6 @@ mat-card-actions {
 .basepoint {color:#FF4081;
 padding-top:4px;
 font-weight:bold;}
-
-mat-card-title {
-    padding-bottom:20px;
-}
 
 .example-card {margin:30px;
 padding:auto;
@@ -32,7 +28,6 @@ display:inline-block;}
 }
 
 ul{
-    
     max-width: 1450px;
 }
 
