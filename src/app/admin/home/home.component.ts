@@ -17,9 +17,11 @@ export class AdminHomeComponent implements OnInit {
 
   constructor(private rewardsservice: RewardsService, private usersservice: UsersService, private challengesservice: ChallengesService, public authService: AuthService) {
     this.authService.userData$.subscribe(data => {
-      this.user = data;
-      this.user.events = [];
-      this.user.chest = [];
+      if(data != null){
+        this.user = data;
+        this.user.events = [];
+        this.user.chest = [];
+      }
     });
   }
 
@@ -30,7 +32,7 @@ export class AdminHomeComponent implements OnInit {
 
   private getData(){
     this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
-    this.usersservice.getAll().subscribe(users => {this.users = users; console.log(users)});
+    this.usersservice.getAll().subscribe(users => this.users = users);
     this.challengesservice.getAll().subscribe(challenges => this.challenges = challenges);
   }
 

@@ -1,4 +1,4 @@
-<mat-list>
+<mat-list *ngIf="user != null">
   <div *ngFor="let event of user.events">
     <mat-list-item>
       <mat-icon mat-list-icon>{{ getIcon(event.revisor) }}</mat-icon>

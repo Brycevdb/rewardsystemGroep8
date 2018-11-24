@@ -18,7 +18,11 @@ export class ChallengesComponent implements OnInit {
 
   constructor(private challengesService: ChallengesService, private authService: AuthService, private usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
-      this.user = data;
+      if(data != null){
+        this.usersservice.get(data._id).subscribe(user => {
+          this.user = user;
+        });
+      }
     });
   }
 
