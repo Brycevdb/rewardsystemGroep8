@@ -6,6 +6,12 @@
     beschrijving van de uitdaging te lezen.
   </p>
 
+  <div *ngIf="user == null" class="paddedNormal noPadding_bottom noPadding_left noPadding_right">
+    <a mat-button routerLink="/login">
+      Ik kan niet zien wie je bent, logt u even in.
+    </a>
+  </div>
+
   <div class="widthFull column centered">
     <ul class="gridcontainer paddedExtraSmall">
       <mat-card *ngFor="let challenge of challenges" class="margedExtraSmall">
