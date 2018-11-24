@@ -44,21 +44,21 @@ export class ChallengesService {
   }
 
   get(id: string): Observable<Challenge> {
-    return this.http.get<Challenge>(this.challengeUrl + '/' + id).pipe(
+    return this.http.get<Challenge>(this.challengeUrl + id).pipe(
       tap((challenge: Challenge) => this.log('Fetched challenge with id ' + id)),
       catchError(this.handleError<Challenge>('getChallenge'))
     );
   }
 
   update(challenge: Challenge): Observable<Challenge>{
-    return this.http.put<Challenge>(this.challengeUrl + '/' + challenge._id, challenge, httpOptions).pipe(
+    return this.http.put<Challenge>(this.challengeUrl + challenge._id, challenge, httpOptions).pipe(
       tap((challenge: Challenge) => this.log('Updated challenge with id ' + challenge._id)),
       catchError(this.handleError<Challenge>('updateChallenge'))
     );
   }
 
   delete (key: string): Observable<Challenge> {
-    return this.http.delete<Challenge>(this.challengeUrl + '/' + key, httpOptions).pipe(
+    return this.http.delete<Challenge>(this.challengeUrl + key, httpOptions).pipe(
       tap(_ => this.log('Deleted challenge with id ' + key)),
       catchError(this.handleError<Challenge>('deleteChallenge'))
     );

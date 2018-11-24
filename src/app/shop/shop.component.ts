@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
 
     // Update db
     this.Usersservice.update(this.user).subscribe(user => {
-       
+       console.log(this.user.chest);
     });
   }
 }
