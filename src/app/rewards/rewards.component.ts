@@ -16,7 +16,7 @@ export class RewardsComponent implements OnInit {
   private user: User;
   rewards: Reward[];
 
-  constructor( public authService: AuthService, private rewardsService: RewardsService,) {
+  constructor(public authService: AuthService, private rewardsService: RewardsService) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
       this.chest = this.user.chest;

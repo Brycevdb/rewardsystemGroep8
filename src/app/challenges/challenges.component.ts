@@ -16,7 +16,7 @@ export class ChallengesComponent implements OnInit {
 
   user: User;
 
-  constructor(private challengesService: ChallengesService, private authService: AuthService, private Usersservice: UsersService) {
+  constructor(private challengesService: ChallengesService, private authService: AuthService, private usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
       this.user = data;
     });
@@ -31,8 +31,6 @@ export class ChallengesComponent implements OnInit {
     this.user.events.push(event);
 
     // Update db
-    this.Usersservice.update(this.user).subscribe(event => {
-      console.log(this.user);
-    });
+    this.usersservice.update(this.user).subscribe(user => { });
   }
 }

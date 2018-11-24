@@ -36,7 +36,7 @@ export class UsersService {
   update(user: User): Observable<User>{
     return this.http.put<User>(this.uri + '/' + user._id, user, httpOptions).pipe(
       tap((user: User) => this.log('Updated user with id ' + user._id)),
-      catchError(this.handleError<User>('updateReward'))
+      catchError(this.handleError<User>('updateUser'))
     );
   }
 

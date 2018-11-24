@@ -15,14 +15,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class ShopComponent implements OnInit {
 
-  private points: number = 0;
-
   constructor(private rewardsservice: RewardsService, private authService: AuthService, private Usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
-      this.Usersservice.get(data._id).subscribe(user => {
-        this.user = user;
-        this.points = this.getUserPoints();
-      });
+      if(data != null){
+        this.Usersservice.get(data._id).subscribe(user => {
+          this.user = user;
+        });
+      }
     });
   }
 
