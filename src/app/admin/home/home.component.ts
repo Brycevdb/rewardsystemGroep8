@@ -55,9 +55,9 @@ export class AdminHomeComponent implements OnInit {
 
     this.challengesservice.add({ name, description, basepoints } as Challenge).subscribe(challenge => {
       this.challenges.push(challenge);
-    });
 
-    this.getData();
+      this.getData();
+    });
   }
 
   sendChallenge(user: User, index: number, points: number){

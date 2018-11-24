@@ -5,8 +5,7 @@ import { Observable, of }from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'
-  })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,6 @@ export class RewardsService {
   }
 
   getAll(): Observable<Reward[]> {
-
     return this.http.get<Reward[]>(this.rewardUrl, httpOptions).pipe(
       tap(_ => this.log('Fetched all rewards')),
       catchError(this.handleError('getAllRewards', []))
