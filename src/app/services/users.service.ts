@@ -40,6 +40,13 @@ export class UsersService {
     );
   }
 
+  get(id: string): Observable<User> {
+    return this.http.get<User>(this.uri + '/' + id).pipe(
+      tap((user: User) => this.log('Fetched user with id ' + id)),
+      catchError(this.handleError<User>('getUser'))
+    );
+  }
+
   getAll(): Observable<User[]> {
 
     return this.http.get<User[]>(this.uri, httpOptions).pipe(

@@ -64,6 +64,6 @@ export class AdminHomeComponent implements OnInit {
     user.events[index].points = points;
     user.events[index].revisor = this.user;
 
-    this.usersservice.update(user).subscribe(reward => { });
+    this.usersservice.update(user).subscribe(user => { });
   }
 }

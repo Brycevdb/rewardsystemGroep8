@@ -38,9 +38,9 @@
                     </div>
 
                     <mat-form-field class="widthFull">
-                        <input matInput type="number" value="{{event.challenge.basepoints}}" #inpPoints placeholder="Verdiende punten" />
+                        <input #inpPoints matInput type="number" value="{{event.challenge.basepoints}}" placeholder="Verdiende punten" />
                       </mat-form-field>
-                      <a mat-button (click)="sendChallenge(user, i, inpPoints.value)">Accepteer</a>
+                      <a mat-button (click)="sendChallenge(tuser, i, inpPoints.value)">Accepteer</a>
                   </div>
 
                   <ng-template #elseBlock>
