@@ -22,7 +22,6 @@ export class AuthService {
     this.logout();
     this.http.post<any>('http://localhost:4000/users/login', user, httpOptions)
     .pipe(map(login => {
-      console.log(login);
       if (login && login.token) {
         localStorage.setItem('currentUser', JSON.stringify(login));
       }
@@ -36,7 +35,6 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
   private setUserData(user) {
-    console.log(user);
     if (user !== null) {
 
       if(user.chest == null){

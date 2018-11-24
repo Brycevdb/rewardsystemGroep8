@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     }
   }
   getUsers(): void {
-    //this.userService.getUsers().subscribe(users => this.users = users);
+    //this.userService.getAll().subscribe(users => this.users = users);
   }
   
   login(user) {

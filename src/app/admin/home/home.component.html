@@ -3,28 +3,31 @@
 
     <div class="widthFull column centered">
       <ul class="gridcontainer paddedExtraSmall">
-        <mat-accordion *ngFor="let user of users" class="widthFull margedExtraSmall noMargin_left noMargin_right noMargin_top">
+        <mat-accordion *ngFor="let tuser of users" class="widthFull margedExtraSmall noMargin_left noMargin_right noMargin_top">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                     <div class="column">
                       <div class="row">
                         <p class="name">
-                          {{ user.name }}
+                          {{ tuser.name }}
+                        </p>
+                        <p class="margedExtraSmall noMargin_right noMargin_top noMargin_bottom" *ngIf="tuser._id == user._id">
+                          dit ben jij toch?
                         </p>
                       </div>
                       
                       <p class="username margedThin noMargin_left noMargin_right noMargin_bottom">
-                        {{ user.username }}
+                        {{ tuser.username }}
                       </p>
                   </div>
                 </mat-panel-title>
                 <mat-panel-description></mat-panel-description>
               </mat-expansion-panel-header>
           
-              <div *ngIf="user.events != null && user.events.length > 0; else elseBlock" class="column paddedNormal noPadding_left noPadding_right">
-                <div *ngFor="let event of user.events; let i = index" class="row">
-                  <div *ngIf="event.revisor == null; else elseBlock">
+              <div *ngIf="tuser.events != null && tuser.events.length > 0" class="column paddedNormal noPadding_left noPadding_right">
+                <div *ngFor="let event of tuser.events; let i = index" class="row">
+                  <div *ngIf="event.revisor == null && tuser._id != user._id; else elseBlock">
                     <div class="column">
                       <p class="widthFull margedThin noMargin_left noMargin_right">
                         {{ event.challenge.description }}
@@ -39,22 +42,28 @@
                       </mat-form-field>
                       <a mat-button (click)="sendChallenge(user, i, inpPoints.value)">Accepteer</a>
                   </div>
+
+                  <ng-template #elseBlock>
+                    <div class="column widthFull">
+                      <p class="margedThin noMargin_left noMargin_right">
+                        {{ event.challenge.description }}
+                      </p>
+                      <p class="margedThin noMargin_left noMargin_right">
+                        {{ event.description }}
+                      </p>
+  
+                      <p *ngIf="event.revisor != null; else revisorBlock">
+                        Toegewezen punten: {{event.points}}
+                      </p>
+
+                      <ng-template #revisorBlock>
+                        <p>
+                          Nog in behandeling
+                        </p>
+                      </ng-template>
+                    </div>
+                  </ng-template>
                 </div>
-
-                <ng-template #elseBlock>
-                  <div class="column widthFull">
-                    <p class="margedThin noMargin_left noMargin_right">
-                      {{ event.challenge.description }}
-                    </p>
-                    <p class="margedThin noMargin_left noMargin_right">
-                      {{ event.description }}
-                    </p>
-
-                    <p>
-                      Toegewezen punten: {{event.challenge.basepoints}}
-                    </p>
-                  </div>
-                </ng-template>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
