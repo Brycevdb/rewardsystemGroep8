@@ -23,7 +23,7 @@ export class ChallengesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.challengesService.getChallenges().subscribe(challenges => this.challenges = challenges);
+    this.challengesService.getAll().subscribe(challenges => this.challenges = challenges);
   }
 
   sendChallenge(challenge: Challenge, description: string){

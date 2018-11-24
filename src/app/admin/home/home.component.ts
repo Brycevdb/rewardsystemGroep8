@@ -31,7 +31,7 @@ export class AdminHomeComponent implements OnInit {
   private getData(){
     this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
     this.usersservice.getAll().subscribe(users => {this.users = users; console.log(users)});
-    this.challengesservice.getChallenges().subscribe(challenges => this.challenges = challenges);
+    this.challengesservice.getAll().subscribe(challenges => this.challenges = challenges);
   }
 
   ngOnInit() {
@@ -44,16 +44,16 @@ export class AdminHomeComponent implements OnInit {
 
     this.rewardsservice.add({ name, description, cost } as Reward).subscribe(reward => {
       this.rewards.push(reward);
-    });
 
-    this.getData();
+      this.getData();
+    });
   }
 
   addChallenge(name: string, description: string, basepoints: number) {
     name = name.trim();
     description = description.trim();
 
-    this.challengesservice.addChallenge({ name, description, basepoints } as Challenge).subscribe(challenge => {
+    this.challengesservice.add({ name, description, basepoints } as Challenge).subscribe(challenge => {
       this.challenges.push(challenge);
     });
 
