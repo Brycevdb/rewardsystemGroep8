@@ -14,7 +14,9 @@ export class AuthService {
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
   readonly URL = 'http://localhost:4000/users/login';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.setUserData(JSON.parse(localStorage.getItem('currentUser')));
+  }
 
   login(user) {
     this.logout();

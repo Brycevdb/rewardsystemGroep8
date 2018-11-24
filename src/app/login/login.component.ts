@@ -14,9 +14,13 @@ export class LoginComponent implements OnInit {
     {username: "Laurenz", password: "gatjas"},
     {username: "daan", password: "gatjas"},
   ];
-  logedInUser: User;
-  constructor(private userService: UsersService, public authService: AuthService) { }
+  loggedInUser: User;
+  constructor(public userService: UsersService, public authService: AuthService) {
+  }
   ngOnInit() {
+    if (localStorage.getItem('currentUser')) {
+      this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
   getUsers(): void {
     //this.userService.getUsers().subscribe(users => this.users = users);
@@ -24,7 +28,7 @@ export class LoginComponent implements OnInit {
   
   login(user) {
     this.authService.login(user);
-    this.authService.userData$.subscribe(data => this.logedInUser = data);
+    this.authService.userData$.subscribe(data => this.loggedInUser = data);
     //console.log('ingelogde gebruiker:' + this.logedInUser.name);
     //console.log(this.logedInUser);
   }
