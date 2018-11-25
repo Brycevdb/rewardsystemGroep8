@@ -12,7 +12,7 @@ import { User } from '../interfaces/user';
 })
 export class NavigationComponent {
 
-  private user: User;
+  user: User;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

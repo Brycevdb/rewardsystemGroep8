@@ -11,7 +11,7 @@ import { UsersService } from '../services/users.service';
 })
 export class MychallengesComponent implements OnInit {
 
-  private user: User;
+  user: User;
 
   constructor(public authService: AuthService, private challengesservice: ChallengesService, private usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {

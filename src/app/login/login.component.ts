@@ -11,8 +11,8 @@ import { ChallengesService } from '../services/challenges.service';
 })
 export class LoginComponent implements OnInit {
   users = [
-    {username: "Laurenz", password: "gatjas"},
-    {username: "daan", password: "gatjas"},
+    {username: "admin", password: "admin"},
+    {username: "user", password: "user"},
   ];
   loggedInUser: User;
   constructor(public userService: UsersService, public authService: AuthService) {
