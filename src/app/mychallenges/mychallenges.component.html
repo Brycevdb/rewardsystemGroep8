@@ -1,0 +1,19 @@
+<mat-list *ngIf="user != null">
+  <div *ngFor="let event of user.events">
+    <mat-list-item>
+      <mat-icon mat-list-icon>{{ getIcon(event.revisor) }}</mat-icon>
+      <p mat-line>{{ event.challenge.description}}</p>
+      <p mat-line>{{ event.description }}</p>
+
+      <p *ngIf="event.revisor == null; else elseBlock" mat-line>
+        Deze inzending is nog niet verwerkt
+      </p>
+
+      <ng-template #elseBlock>
+        <p mat-line>
+          {{ event.points }} punten ontvangen door {{ event.revisor.username }}
+        </p>
+      </ng-template>
+    </mat-list-item>
+  </div>
+</mat-list>

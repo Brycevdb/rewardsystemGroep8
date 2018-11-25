@@ -10,22 +10,25 @@ import { ChallengesService } from '../services/challenges.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  users: User[] = [
-    {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
-    {_id: "5bf54f2f5b1dac1648de29a9", username: "Laurenz", password: "gatjas", role: 1, name: "Laurenz", chest: [], events: []},
+  users = [
+    {username: "admin", password: "admin"},
+    {username: "user", password: "user"},
   ];
-  logedInUser: User;
-  constructor(private userService: UsersService, public authService: AuthService) { }
+  loggedInUser: User;
+  constructor(public userService: UsersService, public authService: AuthService) {
+  }
   ngOnInit() {
-    this.getUsers();
+    if (localStorage.getItem('currentUser')) {
+      this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
   getUsers(): void {
-    //this.userService.getUsers().subscribe(users => this.users = users);
+    //this.userService.getAll().subscribe(users => this.users = users);
   }
   
   login(user) {
     this.authService.login(user);
-    this.authService.userData$.subscribe(data => this.logedInUser = data);
+    this.authService.userData$.subscribe(data => this.loggedInUser = data);
     //console.log('ingelogde gebruiker:' + this.logedInUser.name);
     //console.log(this.logedInUser);
   }

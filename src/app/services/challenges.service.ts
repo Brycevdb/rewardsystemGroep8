@@ -12,55 +12,41 @@ const httpOptions = {
 })
 export class ChallengesService {
 
-  private challengeUrl = 'http://localhost:4000/challenges/';
+  private uri = 'http://localhost:4000/challenges/';
   constructor(private http: HttpClient) { }
 
-  /** POST: add a new hero to the server */
-  addChallenge (challenge: Challenge): Observable<Challenge> {
-    return this.http.post<Challenge>(this.challengeUrl, challenge, httpOptions).pipe(
-      tap((challenge: Challenge) => this.log(`added challenge w/ id=${challenge._id}`)),
+  add(challenge: Challenge): Observable<Challenge> {
+    return this.http.post<Challenge>(this.uri, challenge, httpOptions).pipe(
+      tap((challenge: Challenge) => this.log("added challenge " + challenge._id)),
       catchError(this.handleError<Challenge>('addChallenge'))
     );
   }
 
-  /** DELETE: delete the hero from the server */
-  deleteChallenge (challenge: Challenge | number): Observable<Challenge> {
-    const id = typeof challenge === 'number' ? challenge : challenge._id;
-    const url = `${this.challengeUrl}/${id}`;
-
-    return this.http.delete<Challenge>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted challenge id=${id}`)),
+  delete(key: string): Observable<Challenge> {
+    return this.http.delete<Challenge>(this.uri + key, httpOptions).pipe(
+      tap(_ => this.log("deleted challenge with id " + key)),
       catchError(this.handleError<Challenge>('deleteChallenge'))
     );
   }
 
-  getChallenges(): Observable<Challenge[]> {
-
-    return this.http.get<Challenge[]>(this.challengeUrl, httpOptions)
-    .pipe(
-      tap(),
-      catchError(this.handleError('getChallenges', []))
+  getAll(): Observable<Challenge[]> {
+    return this.http.get<Challenge[]>(this.uri, httpOptions).pipe(
+      tap(_ => this.log('Fetched all challenges')),
+      catchError(this.handleError('getAllChallenges', []))
     );
   }
 
   get(id: string): Observable<Challenge> {
-    return this.http.get<Challenge>(this.challengeUrl + '/' + id).pipe(
+    return this.http.get<Challenge>(this.uri + id).pipe(
       tap((challenge: Challenge) => this.log('Fetched challenge with id ' + id)),
       catchError(this.handleError<Challenge>('getChallenge'))
     );
   }
 
   update(challenge: Challenge): Observable<Challenge>{
-    return this.http.put<Challenge>(this.challengeUrl + '/' + challenge._id, challenge, httpOptions).pipe(
+    return this.http.put<Challenge>(this.uri + challenge._id, challenge, httpOptions).pipe(
       tap((challenge: Challenge) => this.log('Updated challenge with id ' + challenge._id)),
       catchError(this.handleError<Challenge>('updateChallenge'))
-    );
-  }
-
-  delete (key: string): Observable<Challenge> {
-    return this.http.delete<Challenge>(this.challengeUrl + '/' + key, httpOptions).pipe(
-      tap(_ => this.log('Deleted challenge with id ' + key)),
-      catchError(this.handleError<Challenge>('deleteChallenge'))
     );
   }
 

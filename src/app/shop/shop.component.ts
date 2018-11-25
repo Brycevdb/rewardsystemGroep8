@@ -17,21 +17,19 @@ export class ShopComponent implements OnInit {
 
   constructor(private rewardsservice: RewardsService, private authService: AuthService, private Usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
-      this.user = data;
+      if(data != null){
+        this.Usersservice.get(data._id).subscribe(user => {
+          this.user = user;
+        });
+      }
     });
   }
 
   rewards: Reward[];
   user: User;
 
-  private getData(){
-    this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
-  }
-
   ngOnInit() {
-    //this.user = { _id: '', name: '', username: '', role:0, password: '', chest: [], events: []}
-
-    this.getData();
+    this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
   }
 
   getUserPoints(): number{
@@ -56,7 +54,8 @@ export class ShopComponent implements OnInit {
     this.user.chest.push({ stamp: new Date().getTime(), reward });
 
     // Update db
-    this.Usersservice.update(this.user).subscribe(reward => { 
+    this.Usersservice.update(this.user).subscribe(user => {
+       console.log(this.user);
     });
   }
 }

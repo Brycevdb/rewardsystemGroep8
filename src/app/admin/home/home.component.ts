@@ -6,6 +6,7 @@ import { RewardsService } from 'src/app/services/rewards.service';
 import { UsersService } from 'src/app/services/users.service';
 import { ChallengesService } from 'src/app/services/challenges.service';
 import { Challenge } from 'src/app/interfaces/challenge';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-adminhome',
@@ -14,8 +15,17 @@ import { Challenge } from 'src/app/interfaces/challenge';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor(private rewardsservice: RewardsService, private usersservice: UsersService, private challengesservice: ChallengesService) {}
+  constructor(private rewardsservice: RewardsService, private usersservice: UsersService, private challengesservice: ChallengesService, public authService: AuthService) {
+    this.authService.userData$.subscribe(data => {
+      if(data != null){
+        this.user = data;
+        this.user.events = [];
+        this.user.chest = [];
+      }
+    });
+  }
 
+  user: User;
   rewards: Reward[];
   users: User[];
   challenges: Challenge[];
@@ -23,7 +33,7 @@ export class AdminHomeComponent implements OnInit {
   private getData(){
     this.rewardsservice.getAll().subscribe(rewards => this.rewards = rewards);
     this.usersservice.getAll().subscribe(users => this.users = users);
-    this.challengesservice.getChallenges().subscribe(challenges => this.challenges = challenges);
+    this.challengesservice.getAll().subscribe(challenges => this.challenges = challenges);
   }
 
   ngOnInit() {
@@ -36,19 +46,26 @@ export class AdminHomeComponent implements OnInit {
 
     this.rewardsservice.add({ name, description, cost } as Reward).subscribe(reward => {
       this.rewards.push(reward);
-    });
 
-    this.getData();
+      this.getData();
+    });
   }
 
   addChallenge(name: string, description: string, basepoints: number) {
     name = name.trim();
     description = description.trim();
 
-    this.challengesservice.addChallenge({ name, description, basepoints } as Challenge).subscribe(challenge => {
+    this.challengesservice.add({ name, description, basepoints } as Challenge).subscribe(challenge => {
       this.challenges.push(challenge);
-    });
 
-    this.getData();
+      this.getData();
+    });
+  }
+
+  sendChallenge(user: User, index: number, points: number){
+    user.events[index].points = points;
+    user.events[index].revisor = this.user;
+
+    this.usersservice.update(user).subscribe(user => { });
   }
 }

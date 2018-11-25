@@ -1,34 +1,101 @@
 <mat-tab-group>
   <mat-tab label="Gebruikers">
-    <mat-list>
-        <mat-list-item *ngFor="let user of users">
-          <li class="row centered paddedNormal noPadding_top noPadding_bottom">
-            <img matListAvatar src="/assets/images/avatars/placeholder.jpg" alt="Avatar of user {{ user.name }}"
-              class="paddedSmall">
-            
-            <div class="column">
-                <div class="row">
-                  <p class="name">
-                    {{ user.name }}
-                  </p>
 
-                  <p class="points margedExtraSmall noMargin_top noMargin_bottom noMargin_right ">
-                    -- 600 points
-                  </p>
+    <div class="widthFull column centered">
+      <ul class="gridcontainer paddedExtraSmall">
+        <mat-accordion *ngFor="let tuser of users" class="widthFull margedExtraSmall noMargin_left noMargin_right noMargin_top">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="column">
+                      <div class="row">
+                        <p class="name">
+                          {{ tuser.name }}
+                        </p>
+                        <p class="margedExtraSmall noMargin_right noMargin_top noMargin_bottom" *ngIf="tuser._id == user._id">
+                          dit ben jij toch?
+                        </p>
+                      </div>
+                      
+                      <p class="username margedThin noMargin_left noMargin_right noMargin_bottom">
+                        {{ tuser.username }}
+                      </p>
+                  </div>
+                </mat-panel-title>
+                <mat-panel-description></mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <div *ngIf="tuser.events != null && tuser.events.length > 0" class="column">
+                <div *ngFor="let event of tuser.events; let i = index" class="row">
+                  <div *ngIf="event.revisor == null && tuser._id != user._id; else elseBlock">
+                    <div class="column">
+                      <p class="widthFull margedThin noMargin_left noMargin_right">
+                        {{ event.challenge.description }}
+                      </p>
+                      <p class="widthFull margedThin noMargin_left noMargin_right">
+                        {{ event.description }}
+                      </p>
+                    </div>
+
+                    <div class="row">
+                      <mat-form-field class="widthFull">
+                        <input #inpPoints matInput type="number" value="{{event.challenge.basepoints}}" placeholder="Verdiende punten" />
+                      </mat-form-field>
+                      <a mat-button (click)="sendChallenge(tuser, i, inpPoints.value)">Accepteer</a>
+                    </div>
+                    
+                  </div>
+
+                  <ng-template #elseBlock>
+                    <div class="column widthFull paddedSmall noPadding_left noPadding_right">
+                      <p class="margedThin noMargin_left noMargin_right">
+                        {{ event.challenge.description }}
+                      </p>
+                      <p class="margedThin noMargin_left noMargin_right">
+                        {{ event.description }}
+                      </p>
+  
+                      <p *ngIf="event.revisor != null; else revisorBlock">
+                        Toegewezen punten: {{event.points}}
+                      </p>
+
+                      <ng-template #revisorBlock>
+                        <p>
+                          Nog in behandeling
+                        </p>
+                      </ng-template>
+                    </div>
+                  </ng-template>
                 </div>
-                
-                <p class="username margedThin noMargin_left noMargin_right noMargin_bottom">
-                  {{ user.username }}
-                </p>
-            </div>
-          </li>
-        </mat-list-item>
-      </mat-list>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+      </ul>
+    </div>
   </mat-tab>
 
   <mat-tab label="Rewards">
     <div class="widthFull column centered">
       <ul class="gridcontainer paddedExtraSmall">
+        <mat-card class="margedExtraSmall">
+          <mat-form-field class="widthFull">
+            <input type="text" #inpName matInput placeholder="Naam" />
+          </mat-form-field>
+          <mat-form-field class="widthFull">
+            <input type="number" #inpCost matInput placeholder="Kost" />
+          </mat-form-field>
+          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
+          <mat-card-content>
+            <mat-form-field class="widthFull">
+              <textarea #inpDescription matInput placeholder="Beschrijving"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+          
+          <mat-card-actions>
+            <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Voeg een nieuwe reward toe</a>
+          </mat-card-actions>
+        </mat-card>
+
         <mat-card *ngFor="let reward of rewards" class="margedExtraSmall">
           <div *ngIf="rewards != null && rewards.length > 0">
             <mat-card-header>
@@ -47,25 +114,6 @@
               <a [routerLink]="['/admin/rewards', reward._id]" mat-button>EDIT</a>
             </mat-card-actions>
           </div>
-          </mat-card>
-
-        <mat-card class="margedExtraSmall">
-            <mat-form-field class="widthFull">
-              <input type="text" #inpName matInput placeholder="Naam" />
-            </mat-form-field>
-            <mat-form-field class="widthFull">
-              <input type="number" #inpCost matInput placeholder="Kost" />
-            </mat-form-field>
-          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
-          <mat-card-content>
-            <mat-form-field class="widthFull">
-              <textarea #inpDescription matInput placeholder="Beschrijving"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-          
-          <mat-card-actions>
-            <a mat-button (click)="addReward(inpName.value, inpDescription.value, inpCost.value)">Voeg een nieuwe reward toe</a>
-          </mat-card-actions>
         </mat-card>
       </ul>
     </div>
@@ -74,6 +122,25 @@
   <mat-tab label="Challenges">
     <div class="widthFull column centered">
       <ul class="gridcontainer paddedExtraSmall">
+        <mat-card class="margedExtraSmall">
+          <mat-form-field class="widthFull">
+            <input type="text" #inpChallengeName matInput placeholder="Naam" />
+          </mat-form-field>
+          <mat-form-field class="widthFull">
+            <input type="number" #inpChallengeBasepoints matInput placeholder="Basispunten" />
+          </mat-form-field>
+          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
+          <mat-card-content>
+            <mat-form-field class="widthFull">
+              <textarea #inpChallengeDescription matInput placeholder="Beschrijving"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+          
+          <mat-card-actions>
+            <a mat-button (click)="addChallenge(inpChallengeName.value, inpChallengeDescription.value, inpChallengeBasepoints.value)">Voeg een nieuwe challenge toe</a>
+          </mat-card-actions>
+        </mat-card>
+
         <mat-card *ngFor="let challenge of challenges" class="margedExtraSmall">
           <div *ngIf="challenge != null && challenges.length > 0">
             <mat-card-header>
@@ -93,25 +160,6 @@
             </mat-card-actions>
           </div>
           </mat-card>
-
-        <mat-card class="margedExtraSmall">
-            <mat-form-field class="widthFull">
-              <input type="text" #inpChallengeName matInput placeholder="Naam" />
-            </mat-form-field>
-            <mat-form-field class="widthFull">
-              <input type="number" #inpChallengeBasepoints matInput placeholder="Basispunten" />
-            </mat-form-field>
-          <img mat-card-image src="/assets/images/rewards/placeholder.jpg" alt="Placeholder picture for reward">
-          <mat-card-content>
-            <mat-form-field class="widthFull">
-              <textarea #inpChallengeDescription matInput placeholder="Beschrijving"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-          
-          <mat-card-actions>
-            <a mat-button (click)="addChallenge(inpChallengeName.value, inpChallengeDescription.value, inpChallengeBasepoints.value)">Voeg een nieuwe challenge toe</a>
-          </mat-card-actions>
-        </mat-card>
       </ul>
     </div>
   </mat-tab>

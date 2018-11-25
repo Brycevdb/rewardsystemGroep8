@@ -26,6 +26,7 @@ import { AdminChallengesComponent } from './admin/challenges/challenges.componen
 import { UsersComponent } from './admin/users/users.component';
 import { ShopComponent } from './shop/shop.component';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
+import { MychallengesComponent } from './mychallenges/mychallenges.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { JwtInterceptor } from './_helper/jwt.interceptor';
     ChallengesComponent,
     LoginComponent,
     UsersComponent,
-    ShopComponent
+    ShopComponent,
+    MychallengesComponent
   ],
   imports: [
     HttpClientModule,

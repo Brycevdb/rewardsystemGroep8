@@ -14,13 +14,14 @@ export class AuthService {
   userData$: BehaviorSubject<User> = new BehaviorSubject(null);
   readonly URL = 'http://localhost:4000/users/login';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.setUserData(JSON.parse(localStorage.getItem('currentUser')));
+  }
 
   login(user) {
     this.logout();
     this.http.post<any>('http://localhost:4000/users/login', user, httpOptions)
     .pipe(map(login => {
-      console.log(login);
       if (login && login.token) {
         localStorage.setItem('currentUser', JSON.stringify(login));
       }
@@ -39,8 +40,6 @@ export class AuthService {
       if(user.chest == null){
         user.chest = [];
       }
-
-      console.log(user.events);
 
       if(user.events == null){
         user.events = [];

@@ -5,15 +5,14 @@ import { Observable, of }from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'
-  })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 @Injectable({
   providedIn: 'root'
 })
 export class RewardsService {
 
-  private rewardUrl = 'http://localhost:4000/rewards';
+  private rewardUrl = 'http://localhost:4000/rewards/';
   constructor(private http: HttpClient) { }
 
   add (reward: Reward): Observable<Reward> {
@@ -24,14 +23,13 @@ export class RewardsService {
   }
 
   delete (key: string): Observable<Reward> {
-    return this.http.delete<Reward>(this.rewardUrl + '/' + key, httpOptions).pipe(
+    return this.http.delete<Reward>(this.rewardUrl + key, httpOptions).pipe(
       tap(_ => this.log('Deleted reward with id ' + key)),
       catchError(this.handleError<Reward>('deleteReward'))
     );
   }
 
   getAll(): Observable<Reward[]> {
-
     return this.http.get<Reward[]>(this.rewardUrl, httpOptions).pipe(
       tap(_ => this.log('Fetched all rewards')),
       catchError(this.handleError('getAllRewards', []))
@@ -39,14 +37,14 @@ export class RewardsService {
   }
 
   get(id: string): Observable<Reward> {
-    return this.http.get<Reward>(this.rewardUrl + '/' + id).pipe(
+    return this.http.get<Reward>(this.rewardUrl + id).pipe(
       tap((reward: Reward) => this.log('Fetched reward with id ' + id)),
       catchError(this.handleError<Reward>('getReward'))
     );
   }
 
   update(reward: Reward): Observable<Reward>{
-    return this.http.put<Reward>(this.rewardUrl + '/' + reward._id, reward, httpOptions).pipe(
+    return this.http.put<Reward>(this.rewardUrl + reward._id, reward, httpOptions).pipe(
       tap((reward: Reward) => this.log('Updated reward with id ' + reward._id)),
       catchError(this.handleError<Reward>('updateReward'))
     );

@@ -16,25 +16,25 @@ export class ChallengesComponent implements OnInit {
 
   user: User;
 
-  constructor(private challengesService: ChallengesService, private authService: AuthService, private Usersservice: UsersService) {
+  constructor(private challengesService: ChallengesService, private authService: AuthService, private usersservice: UsersService) {
     this.authService.userData$.subscribe(data => {
-      this.user = data;
-
-      console.log(this.user.events);
+      if(data != null){
+        this.usersservice.get(data._id).subscribe(user => {
+          this.user = user;
+        });
+      }
     });
   }
 
   ngOnInit() {
-    this.challengesService.getChallenges().subscribe(challenges => this.challenges = challenges);
+    this.challengesService.getAll().subscribe(challenges => this.challenges = challenges);
   }
 
   sendChallenge(challenge: Challenge, description: string){
-    let event: Event = { description: description.trim(), revisor: null, points: 0, stamp: new Date().getTime(), challenge: challenge._id }
+    let event: Event = { description: description.trim(), revisor: null, points: 0, stamp: new Date().getTime(), challenge: challenge }
     this.user.events.push(event);
 
     // Update db
-    this.Usersservice.update(this.user).subscribe(event => {
-      console.log(this.user);
-    });
+    this.usersservice.update(this.user).subscribe(user => { });
   }
 }
